@@ -16,6 +16,12 @@ class Professor:
     def get_name(self):
         return self.name
 
+    def __eq__(self,other):
+        return self.classes == other.classes
+    
+    def __hash__(self):
+        return hash(tuple(self.classes))
+    
     def get_age(self):
         return self.age
     
