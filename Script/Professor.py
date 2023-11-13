@@ -2,15 +2,15 @@ class Professor:
     
     classes = [] # lista de aulas que o professor leciona, cada elemento é uma tupla (dia, horário)
     
-    def __init__(self, name, age, salary):
-        self.name = name
-        self.age = age
-        self.salary = salary
     
-    def __init__(self, name, age, salary, classes):
+    cost = 90 #Custo da aula por hora
+    
+    def __init__(self,name):
         self.name = name
-        self.age = age
-        self.salary = salary
+    
+    def __init__(self, name, classes):
+        self.name = name
+        self.salary = len(classes) * self.cost #salário do professor é o número de aulas que ele leciona vezes o custo da aula
         self.classes = classes
     
     def get_name(self):
