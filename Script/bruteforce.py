@@ -8,20 +8,14 @@ def exact_cover_bruteforce(X, F):
     Resolve o problema da cobertura exata usando força bruta.
 
     Parâmetros:
-    - X: Conjunto de elementos a serem cobertos.
-    - F: Conjunto de conjuntos, onde cada conjunto é um subconjunto de X.
-
+    - X: Conjunto de elementos a serem cobertos (Estrutura de Horários).
+    - F: Conjunto de conjuntos, onde cada conjunto é um subconjunto de X 
+        (Cada subconjunto são os horários de um respectivo professor).
     Retorna:
-    - Uma lista de conjuntos que forma uma cobertura exata, ou None se não houver solução.
-    
+    - Uma lista de conjuntos(Horários de Professores) que forma uma cobertura exata, ou None se não houver solução.
     Especificação:
-    - Essa solução por meio de força bruta é muito ineficiente, pois a complexidade é O(2^n).
-    - Ela funciona testando cada subconjunto de F, e verificando se ele é uma solução.
-    - Para isso, utilizaremos uma mascara binária para representar cada subconjunto de F.
-    - Por exemplo, se F = [[1, 2], [2, 3], [1, 3]], então a mascara 010 representa o subconjunto [2, 3].
-    - A mascara 101 representa o subconjunto [1, 3].
-    - A mascara 111 representa o subconjunto [1, 2, 3].
-    - A mascara 000 representa o subconjunto vazio.
+        -O algoritmo testa todas as combinações possíveis de subconjuntos de F, e verifica se alguma delas é uma solução.
+        -A quantidade de combinações possíveis é 2^n, onde n é a quantidade de subconjuntos de F.
     """
     n = len(F)
     m = len(X)
