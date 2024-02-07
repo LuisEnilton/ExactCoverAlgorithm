@@ -1,5 +1,8 @@
 from collections import defaultdict, namedtuple
 
+
+
+
 Piece = namedtuple("Piece", "name constraints")
 
 def convert(piece_to_constraints):
@@ -39,7 +42,7 @@ def deselect(constraint_to_pieces, constraints, other_pieces):
                     constraint_to_pieces[other_constraint].add(other_piece)
                     
 
-def solve(constraint_to_pieces, solution=None):
+def Heuristica(constraint_to_pieces, solution=None):
     if solution is None:
         solution = []
     if not constraint_to_pieces:
@@ -52,7 +55,7 @@ def solve(constraint_to_pieces, solution=None):
     for piece in list(constraint_to_pieces[constraint]):
         solution.append(piece.name)
         other_pieces = select(constraint_to_pieces, piece.constraints)
-        for s in solve(constraint_to_pieces, solution):
+        for s in Heuristica(constraint_to_pieces, solution):
             yield s
         deselect(constraint_to_pieces, piece.constraints, other_pieces)
         solution.pop()
@@ -111,8 +114,6 @@ piece_to_constraints = {
     
 constraint_to_pieces = convert(piece_to_constraints)
 #print(constraint_to_pieces)
-solutions = list(solve(constraint_to_pieces))
+solutions = list(Heuristica(constraint_to_pieces))
 
-for solution in solutions:
-    print(solution)
 
