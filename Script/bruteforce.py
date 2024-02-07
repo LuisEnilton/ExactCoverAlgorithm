@@ -21,11 +21,11 @@ def exact_cover_bruteforce(X, F):
     m = len(X)
     def is_solution(subset):
         covered_elements = set()
-        for subset in subset:
+        for subs in subset:
             # Verifica se algum elemento já está na cobertura
-            if any(element in covered_elements for element in subset.classes):
+            if any(element in covered_elements for element in subs):
                 return False
-            covered_elements.update(subset.classes)
+            covered_elements.update(subs)
         return covered_elements == set(X)
     
     
@@ -38,52 +38,59 @@ def exact_cover_bruteforce(X, F):
     return None
     
 def main():
-        X = []
-        F = []
-
-        while True:
-            print("\nEscolha uma opção:")
-            print("1. Criar estrutura de horários")
-            print("2. Inserir professor")
-            print("3. Mostrar solução")
-            print("4. Sair")
-
-            opcao = input("Digite o número da opção desejada: ")
-
-            if opcao == "1":
-                dias = input("Digite os dias da semana (ex: 1,2,3): ")
-                dias = [int(dia) for dia in dias.split(',')]
-                horarios = input("Digite os horários disponíveis no formato (inicio,final): ").split(',')
-                horarios = tuple(map(int, horarios))
-                print(horarios)
-                eh1 = EstruturaDeHorarios.EstruturaDeHorarios(dias, horarios)
-                X = eh1.horarios
-                print("Estrutura de horários criada com sucesso!")
-
-            elif opcao == "2":
-                nome = input("Digite o nome do professor: ")
-                disponibilidade = input("Digite a disponibilidade do professor (dia,horário): ")
-                disponibilidade = [tuple(map(int, intervalo.split(','))) for intervalo in disponibilidade.split()]
-                professor = Professor.Professor(nome, disponibilidade)
-                F.append(professor)
-                print(f"Professor {nome} inserido com sucesso!")
-
-            elif opcao == "3":
-                result = exact_cover_bruteforce(X, F)
-                if result:
-                    for i, professor in enumerate(result):
-                        print(f'\nProfessor {professor.name}, o salário é {professor.salary}')
-                        for classe in professor.classes:
-                            print(f'Aula do professor no dia {classe[0]} no horário {classe[1]}')
-                else:
-                    print("Nenhuma solução encontrada.")
-
-            elif opcao == "4":
-                print("Saindo...")
-                break
-
-            else:
-                print("Opção inválida. Por favor, escolha uma opção válida.")
+    a = [x for x in range(1, 40)]
+    c = [[x for x in range(1, 40)], [x for x in range(21, 40)],[x for x in range(1,21)]]
+    b = [[1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+        [10, 11, 12],
+        [13, 14, 15],
+        [16, 17, 18],
+        [19, 20],
+        [1, 4, 7, 10, 13, 16, 19],
+        [2, 5, 8, 11, 14, 17, 20],
+        [3, 6, 9, 12, 15, 18, 19],
+        [3, 6, 9, 12, 15, 17, 20],
+        [1, 4, 7, 10, 13, 16, 18],
+        [2, 5, 8, 11, 14, 16, 19],
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18],
+        [19, 20],
+        [1, 4, 7, 10, 13, 16, 18, 19],
+        [2, 5, 8, 11, 14, 17, 20, 19],
+        [3, 6, 9, 12, 15, 18, 20, 19],
+        [21, 22, 23],
+        [24, 25, 26],
+        [27, 28, 29],
+        [30, 31, 32],
+        [33, 34, 35],
+        [36, 37, 38],
+        [39, 40],
+        [21, 24, 27, 30, 33, 36, 39],
+        [22, 25, 28, 31, 34, 37, 40],
+        [23, 26, 29, 32, 35, 38, 39],
+        [23, 26, 29, 32, 35, 37, 40],
+        [21, 24, 27, 30, 33, 36, 38],
+        [22, 25, 28, 31, 34, 36, 39],
+        [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+        [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+        [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39],
+        [39, 40],
+        [21, 24, 27, 30, 33, 36, 38, 39],
+        [22, 25, 28, 31, 34, 36, 37, 40],
+        [21, 24, 27, 30, 33, 36, 37, 38],
+        [22, 25, 28, 31, 34, 36, 37, 38],
+        [39, 40],
+        [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+        [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+        [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+        [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+        [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+        [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]]
+    ans =exact_cover_bruteforce(a, c)
+    print(ans)
+             
 
 if __name__ == "__main__":
     main()
